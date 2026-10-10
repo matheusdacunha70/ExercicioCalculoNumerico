@@ -15,22 +15,53 @@ def J(x,y):
     J[1][1] = 3*x**2 - 3*y**2       #df2/dy
     return J
 
-N = 50
-itmax = 20
-tol = 10e-6
 
-for i in range(0, N+1):
-    for j in range(0, N+1):
-        it = 1
-        erro = 1
-        x = -1.5 + 3*i/N
-        y = -1.5 + 3*j/N
-        while(erro > tol and it < itmax):
-            s = np.linalg.solve(J(x,y), -F(x,y))
-            x = x + s[0]
-            y = y + s[1]
-            erro = np.linalg.norm(s)
-            it += 1
-        print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y, "Para uma aproximação inicial de x: ", -1.5 + 3*i/N, "y: ", -1.5 + 3*j/N)
+def newton(x0, y0, itmax=20, tol=1e-6):
+    x = x0
+    y = y0
+    erro = float('inf')
+    it = 0
+
+    while erro > tol and it < itmax:
+        jac = J(x, y)
+        if np.linalg.norm(jac) == 0:
+            raise np.linalg.LinAlgError("Jacobiana singular no ponto inicial")
+
+        s = np.linalg.solve(jac, -F(x, y))
+        x = x + s[0]
+        y = y + s[1]
+        erro = np.linalg.norm(s)
+        it += 1
+
+    return x, y, it, erro
+
+def sistemaA():
+    N = 500
+    itmax = 20
+    tol = 1e-6
+
+    for i in range(0, N+1):
+        for j in range(0, N+1):
+            x = -1.5 + 3*i/N
+            y = -1.5 + 3*j/N
+            try:
+                x, y, it, erro = newton(x, y, itmax=itmax, tol=tol)
+                print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y, "Para uma aproximação inicial de x: ", -1.5 + 3*i/N, "y: ", -1.5 + 3*j/N)
+            except np.linalg.LinAlgError:
+                print("Ponto inicial singular: x: ", x, "y: ", y)
 
 
+def sistemaB():
+    pass
+
+
+def main():
+    print("Sistema A")
+    sistemaA()
+    print("Sistema B")
+    sistemaB()
+
+
+if __name__ == "__main__":
+    print("Resolvendo sistemas não lineares")
+    main()
