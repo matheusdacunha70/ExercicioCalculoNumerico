@@ -1,5 +1,7 @@
-import matplotlib.pyplot as plt
 import numpy as np
+
+from newtons import newton, newton_modificado
+
 
 def F(x,y):
     F = np.zeros(2)
@@ -16,25 +18,6 @@ def J(x,y):
     return J
 
 
-def newton(x0, y0, itmax=20, tol=1e-6):
-    x = x0
-    y = y0
-    erro = float('inf')
-    it = 0
-
-    while erro > tol and it < itmax:
-        jac = J(x, y)
-        if np.linalg.norm(jac) == 0:
-            raise np.linalg.LinAlgError("Jacobiana singular no ponto inicial")
-
-        s = np.linalg.solve(jac, -F(x, y))
-        x = x + s[0]
-        y = y + s[1]
-        erro = np.linalg.norm(s)
-        it += 1
-
-    return x, y, it, erro
-
 def sistemaA():
     N = 500
     itmax = 20
@@ -45,21 +28,19 @@ def sistemaA():
             x = -1.5 + 3*i/N
             y = -1.5 + 3*j/N
             try:
-                x, y, it, erro = newton(x, y, itmax=itmax, tol=tol)
-                print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y, "Para uma aproximação inicial de x: ", -1.5 + 3*i/N, "y: ", -1.5 + 3*j/N)
+                x, y, it, erro = newton(x, y, J, F, itmax=itmax, tol=tol)
+                #print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y, "Para uma aproximação inicial de x: ", -1.5 + 3*i/N, "y: ", -1.5 + 3*j/N)
+                x, y, it, erro = newton_modificado(x, y, J, F, itmax=itmax, tol=tol)
+                #print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y)
             except np.linalg.LinAlgError:
                 print("Ponto inicial singular: x: ", x, "y: ", y)
 
-
-def sistemaB():
-    pass
 
 
 def main():
     print("Sistema A")
     sistemaA()
-    print("Sistema B")
-    sistemaB()
+    print("acabou")
 
 
 if __name__ == "__main__":
