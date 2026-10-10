@@ -1,6 +1,6 @@
 import numpy as np
 
-from newtons import newton, newton_modificado
+from newtons import newton, newton_discreto, newton_modificado
 
 
 def F(x,y):
