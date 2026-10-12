@@ -38,5 +38,5 @@ def newton_modificado(x0, y0, Jac, F, itmax=20, tol=1e-6):
     return x, y, it, erro
 
 
-def newton_discreto(x0, y0, Jac, F, itmax=20, tol=1e-6):
-    pass
+#def newton_discreto(x0, y0, Jac, F, itmax=20, tol=1e-6):
+#    pass

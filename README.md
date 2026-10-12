@@ -8,5 +8,4 @@ Uso de inteligência artificial foi utilizada para avaliar e comparar com nossas
 
 ### TODO:
 
-1. [ ] implementar método de newton discreto
-2. [ ] correções para plotar o grafico de cada método de newton
+1. [ ] correções para plotar o grafico de cada método de newton

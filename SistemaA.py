@@ -17,6 +17,14 @@ def J(x,y):
     J[1][1] = 3*x**2 - 3*y**2       #df2/dy
     return J
 
+def J_aprox(x,y):
+    J = np.zeros((2,2))
+    h = 1e-6
+    J[0][0] = (F(x+h,y)[0] - F(x,y)[0])/h
+    J[0][1] = (F(x,y+h)[0] - F(x,y)[0])/h
+    J[1][0] = (F(x+h,y)[1] - F(x,y)[1])/h
+    J[1][1] = (F(x,y+h)[1] - F(x,y)[1])/h
+    return J
 
 def sistemaA():
     N = 500
@@ -32,6 +40,7 @@ def sistemaA():
                 #print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y, "Para uma aproximação inicial de x: ", -1.5 + 3*i/N, "y: ", -1.5 + 3*j/N)
                 x, y, it, erro = newton_modificado(x, y, J, F, itmax=itmax, tol=tol)
                 #print("Iteração: ", it, "Erro: ", erro, "x: ", x, "y: ", y)
+                x, y, it, erro = newton(x, y, J_aprox, F, itmax=itmax, tol=tol) #Newton Discreto
             except np.linalg.LinAlgError:
                 print("Ponto inicial singular: x: ", x, "y: ", y)
 
