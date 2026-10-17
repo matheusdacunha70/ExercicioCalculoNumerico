@@ -1,6 +1,6 @@
 import numpy as np
 
-from newtons import newton, newton_discreto, newton_modificado
+from newtons import newton, newton_modificado
 
 
 def F(x, y):
@@ -27,7 +27,7 @@ def J_aprox(x, y):
     return J
 
 def sistemaB():
-    N = 500
+    N = 201
     itmax = 20
     tol = 1e-6
 

@@ -15,7 +15,7 @@ def jacobian(x, y):
     df1_dy = -20 * (x**3) * y + 20 * x * (y**3)
 
     df2_dx = 20 * (x**3) * y - 20 * x * (y**3)
-    df2_dy = 5 * (x**4) - 30 * (x**2) * (y**2) + 5 * (y**4)
+    df2_dy = 5 * (x**4) - 30 * (x**2) * (y**2) - 5 * (y**4)
     return np.array([[df1_dx, df1_dy], [df2_dx, df2_dy]])
 
 
@@ -37,9 +37,9 @@ roots = [
 ]
 
 # 3. Parâmetros da região T e do método
-N = 500  # N >= 500 (aumente para 600 ou 800 se quiser mais definição)
-k_max = 40  # Número máximo de iterações
-epsilon = 1e-4  # Tolerância
+N = 500  # N >= 500 (aumente para 500 se quiser mais definição)
+k_max = 20  # Número máximo de iterações
+epsilon = 1e-6  # Tolerância
 
 # Região T: -2 a 2
 x_min, x_max = -2.0, 2.0
