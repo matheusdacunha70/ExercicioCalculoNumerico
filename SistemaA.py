@@ -21,7 +21,7 @@ def J(x, y):
 
 def J_aprox(x, y):
     J = np.zeros((2, 2))
-    h = 1e-6
+    h = 1e-2
     J[0][0] = (F(x + h, y)[0] - F(x, y)[0]) / h
     J[0][1] = (F(x, y + h)[0] - F(x, y)[0]) / h
     J[1][0] = (F(x + h, y)[1] - F(x, y)[1]) / h

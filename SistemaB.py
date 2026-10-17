@@ -9,14 +9,14 @@ def F(x, y):
 def J(x, y):
     J = np.zeros((2,2))
     J[0][0] = 5*x**4 - 30*x**2 * y**2 + 5*y**4
-    J[0][1] = 20 * x**3 * y + 20*x*y**3
+    J[0][1] = -20 * x**3 * y + 20*x*y**3
     J[1][0] = 20 * x**3*y - 20*x * y**3
     J[1][1] = 5 * x**4 - 30*x**2 * y**2 - 5*y**4
     return J
 
 def J_aprox(x, y):
     J = np.zeros((2,2))
-    h = 1e-6
+    h = 1e-2
     J[0][0] = (F(x+h,y)[0] - F(x,y)[0])/h
     J[0][1] = (F(x,y+h)[0] - F(x,y)[0])/h
     J[1][0] = (F(x+h,y)[1] - F(x,y)[1])/h
@@ -124,7 +124,7 @@ def _calcular_mapas(metodo, x_min, x_max, y_min, y_max, N=201, itmax=20, tol=1e-
     return C_map, M_map
 
 
-def sistemaB(N=201, itmax=20, tol=1e-6):
+def sistemaB(N=500, itmax=20, tol=1e-6):
     """Calcula os mapas dos três métodos de Newton para o Sistema B."""
     resultados = {
         "metodos": {},
