@@ -38,5 +38,6 @@ def newton_modificado(x0, y0, Jac, F, itmax=20, tol=1e-6):
     return x, y, it, erro
 
 
-#def newton_discreto(x0, y0, Jac, F, itmax=20, tol=1e-6):
-#    pass
+# Newton discreto utiliza o método de newton modificado com a jacobiana aproximada
+def newton_discreto(x0, y0, Jac_aprox, F, itmax=20, tol=1e-6):
+    return newton_modificado(x0, y0, Jac_aprox, F, itmax=itmax, tol=tol)
