@@ -1,0 +1,37 @@
+\section{Introdução}
+\textbf{Objetivos:}
+\begin{itemize}
+    \item Implementar os métodos de Newton, Newton Modificado e Newton Discreto.
+    \item Analisar as regiões de convergência em sistemas de equações não lineares.
+\end{itemize}
+\vspace{5pt}
+Seja
+$F:\mathbb{R}^2 \to \mathbb{R}^2$ e $F(\mathbf{x}) = \mathbf{0}$ 
+o sistema não linear a ser analisado.
+Para cada solução 
+$(x_r^*, y_r^*)$, com $r = 1, 2, \ldots, L$,
+desse sistema, associamos uma cor diferente 
+$C_r$ 
+e seja 
+$C_0$ 
+uma cor distinta de todas as outras.
+
+Seja 
+$k_{\max}$ 
+o número máximo de iterações permitidas pelo método de Newton e
+$\epsilon > 0$ 
+uma tolerância.
+
+Considere uma região do plano discreta,
+$T = \{(x_i, y_j) \mid i, j = 0, 1, \ldots, N\}$.
+Para cada 
+$(x_i, y_j) \in T$ 
+vamos aplicar o método de Newton, a partir dessa aproximação inicial 
+$\mathbf{x}^{(0)} = (x_i, y_j)$. 
+Vamos definir uma função 
+$C(x_i, y_j) = C_r$ se $\left\| (x^{(k)}, y^{(k)}) - (x_r^*, y_r^*) \right\| < \epsilon$
+, sendo $r = 1, ... L$ a quantidade de soluções do sistema, e $C(x_i, y_j) = C_0$  caso contrário. Como resultado teremos uma aproximação da região de convergência em $T$ .
+Este primeiro mapa ilustra para onde a solução aproximada convergiu.
+Podemos também construir um segundo mapa de convergência que vai ilustrar como a sequência convergiu.
+Nesse caso, a cor associada a cada $x^{(0)} = (x_i, y_j)$ aproximação inicial, está relacionada ao número de iterações
+realizadas. Assim, vamos definir a função $M(x_i, y_j) = C_k$, sendo $C_k = 1, ..., k_{max}$ o número de iterações, e $C(x_i, y_j) = C_0$, caso contrário.

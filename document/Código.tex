@@ -1,0 +1,54 @@
+\section{Código}
+Para esse exercício foi se utilizado programação em linguagem python com integração com Github \textbf{(em anexo no cabeçalho)}.
+
+Para esse exercício foi utilizada a linguagem Python com integração com o GitHub \textbf{(em anexo no cabeçalho)}.
+
+\begin{lstlisting}[caption={Métodos de Newton, Newton Modificado e Newton Discreto}, label={lst:newtons}]
+import numpy as np
+def newton(x0, y0, Jac, F, itmax=20, tol=1e-6):
+    x = x0
+    y = y0
+    erro = float('inf')
+    it = 0
+
+    while erro > tol and it < itmax:
+        jac = Jac(x, y)
+        if np.linalg.norm(jac) == 0:
+            raise np.linalg.LinAlgError("Jacobiana singular no ponto inicial")
+
+        s = np.linalg.solve(jac, -F(x, y))
+        x = x + s[0]
+        y = y + s[1]
+        erro = np.linalg.norm(s)
+        it += 1
+
+    return x, y, it, erro
+
+
+def newton_modificado(x0, y0, Jac, F, itmax=20, tol=1e-6):
+    x = x0
+    y = y0
+    erro = float('inf')
+    it = 0
+
+    jac = Jac(x, y)
+    while erro > tol and it < itmax:
+        s = np.linalg.solve(jac, -F(x, y))
+        x = x + s[0]
+        y = y + s[1]
+        erro = np.linalg.norm(s)
+        it += 1
+
+    return x, y, it, erro
+
+# Newton discreto utiliza o método de Newton normal com a jacobiana aproximada
+def newton_discreto(x0, y0, Jac_aprox, F, itmax=20, tol=1e-6):
+    return newton(x0, y0, Jac_aprox, F, itmax=itmax, tol=tol)
+\end{lstlisting}
+Declaramos uso de IA (github copilot, gemini, chatGPT e Claude) - para ajuda no código python, LaTeX e dúvidas
+
+Para realizar essa atividade, foi realizado inicialmente a revisão do conteúdo e conseguimos utilizar o método de newton para o primeiro sistema. Após isso, utilizamos IA para nos dar uma visão de como seria a imagem para o primeiro sistema.
+
+Organizamos o código e dividimos entre as funções que calculam os métodos e separamos entre os dois sistemas. Nessa parte utilizamos apenas para conseguir nos ajudar com o matplotlib.
+
+Por fim, estávamos tendo problemas para mostrar no gráfico as raízes do sistema B, foi utilziado para investigar o que estava de errado. Foi utilizado uma tolerância geométrica maior para poder distiguir as 5 regiões das raízes do sistema.

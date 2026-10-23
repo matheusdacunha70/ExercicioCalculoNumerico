@@ -1,0 +1,34 @@
+\section{Sistemas}
+Para esse trabalho teremos dois sistemas distintos a serem aproximados pelo Método de Newton, Newton Modificado e Newton Discreto para sistemas não lineares, sendo eles:
+
+\begin{equation}
+    F_{1}(x,y) =
+  \begin{cases}
+    x^3 - 3xy^2 - 1 = 0 \\
+    \hspace{7.5mm}3x^2y - y^3 = 0
+  \end{cases}
+\end{equation}
+
+Com as seguintes soluções exatas do sistema:
+
+$$
+    (x^*_{1},y^*_{1}) = (1,0) 
+$$
+$$
+    (x^*_{2},y^*_{2}) = (-\frac{1}{2},-\frac{\sqrt3}{2}), 
+$$
+$$
+    (x^*_{3},y^*_{3}) = (-\frac{1}{2},\frac{\sqrt3}{2}). 
+$$
+$$
+   Onde \hspace{3pt} x,y \in T = \left\{ \left( -1.5 +\frac{3i}{N},-1.5 \frac{3j}{N} \right) \right\}, com \hspace{3pt} N \ge 500 \hspace{3pt} e \hspace{3pt} 0 \le i,j \le N.
+$$
+
+E sua matriz Jacobiana é: 
+$$\textbf{J(x,y)}=\begin{bmatrix}
+3x^2 - 3y^2 & -6xy \\
+6xy & 3x^2 - 3y^2
+\end{bmatrix}$$
+\vspace{10pt}
+
+
